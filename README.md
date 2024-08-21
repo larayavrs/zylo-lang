@@ -1,5 +1,12 @@
-# Zylo
+<div align="center">
+  A lightweight, high-performance programming language designed for easy efficient code preprocessing and seamless integration with modern development.
+</div>
 
-Zylo is a lightweight, high-performance programming language designed for easy efficient code preprocessing and seamless integration with modern development.
+![zylo-term](assets/zylo-terminal.png)
+<hr />
 
-> **Note:** This project is still in development and not ready for production use.
+#### Content
+> All contents still being written.
+- [Introduction]()
+- [Prerequisites]()
+- [Examples]()
