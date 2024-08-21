@@ -1,0 +1,3 @@
+# This tells Github to detect files having the extension `.def` as `C++` files, which
+# ensures that these files get syntax highlighted properly.
+*.def linguist-language=C++
