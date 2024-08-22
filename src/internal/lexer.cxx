@@ -21,7 +21,7 @@
 #include "lexer.hxx"
 #include "error.hxx"
 
-TokenIdentifier TokenIdentifier::tokenIdentifiers[static_cast<int>(TokenType::Invalid)] = {
+TokenIdentifier TokenIdentifier::tk_identifiers[static_cast<int>(TokenType::Invalid)] = {
     {{}},                                                                            // Number
     {{}},                                                                            // Bool
     {{}},                                                                            // String

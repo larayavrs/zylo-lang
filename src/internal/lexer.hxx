@@ -231,7 +231,7 @@ struct TokenIdentifier
      * This function initializes the token identifiers for each token type by populating
      * the `indentifiers` array with the relevant identifiers for each token type.
      */
-    static TokenIdentifier tokenIdentifiers[static_cast<int>(TokenType::Invalid)];
+    static TokenIdentifier tk_identifiers[static_cast<int>(TokenType::Invalid)];
 };
 
 /**
