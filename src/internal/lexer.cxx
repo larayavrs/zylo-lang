@@ -73,3 +73,27 @@ void process_escape_characters(std::string &string)
         }
     }
 }
+
+void unprocess_escape_characters(std::string &string)
+{
+    for (int chridx = 0; chridx < string.size(); chridx++)
+    {
+        const char chr = string[chridx];
+        std::string inststr;
+        switch (chr)
+        {
+        case '\n':
+            inststr = "\\n";
+            break;
+        case '\t':
+            inststr = "\\t";
+            break;
+        }
+        if (!inststr.empty())
+        {
+            string.erase(string.begin() + chridx);
+            string.insert(chridx, inststr);
+            chridx++;
+        }
+    }
+}
