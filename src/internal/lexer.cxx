@@ -43,3 +43,16 @@ TokenIdentifier TokenIdentifier::tk_identifiers[static_cast<int>(TokenType::Inva
     {{"#"}},                                                                         // Comment
     {{"\n", "\r", ";"}}                                                              // EndOfLine
 };
+
+void process_escape_characters(std::string &string)
+{
+    for (int chridx = 0; chridx < string.size(); chridx++)
+    {
+        const char chr = string[chridx];
+        if (chr == '\\' && chridx < string.size() - 1)
+        {
+            const char nextchr = string[chridx + 1];
+            char replchr = ' '; // Default replacement character 8)
+        }
+    }
+}
