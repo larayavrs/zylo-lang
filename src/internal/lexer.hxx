@@ -210,7 +210,7 @@ enum class TokenType
  *
  * This structure holds a collection of identifiers for various token types. Each
  * token type (as defined in the `TokenType` enumeration) can have associated identifiers,
- * which are stored in this structure. The static member `tokenIdentifiers` is an array
+ * which are stored in this structure. The static member `tk_identifiers` is an array
  * where each entry corresponds to a `TokenType`, storing the identifiers relevant to that
  * token type.
  */
