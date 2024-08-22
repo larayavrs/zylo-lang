@@ -53,6 +53,23 @@ void process_escape_characters(std::string &string)
         {
             const char nextchr = string[chridx + 1];
             char replchr = ' '; // Default replacement character 8)
+            switch (nextchr)
+            {
+            case 'n':
+                replchr = '\n';
+                break;
+            case 't':
+                replchr = '\t';
+                break;
+            }
+            if (replchr != ' ')
+            {
+                // Replace the escape sequence with the actual character
+                string[chridx] = replchr;
+                // Remove the escape character
+                // NOTE: This is not efficient for large strings
+                string.erase(string.begin() + chridx + 1);
+            }
         }
     }
 }
