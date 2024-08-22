@@ -97,3 +97,52 @@ void unprocess_escape_characters(std::string &string)
         }
     }
 }
+
+std::string extract_identifier(std::string &line, char separator)
+{
+    const char skpchrs[] = {' ', '\t', '\0'};
+    const char nonchainablechrs[] = {'(', ')', '[', ']'};
+    enum class IdentifierType
+    {
+        Alpha,    // Alphabetic characters
+        Numeric,  // Numeric characters
+        Symbolic, // Symbolic characters
+        Unknown   // Unknown characters
+    };
+    auto isskpchr = [&skpchrs](char chr) -> bool
+    {
+        for (auto skippablechr : skpchrs)
+        {
+            if (skippablechr == chr)
+                return true;
+        }
+        return false;
+    };
+    auto isunchainablechr = [&nonchainablechrs](char chr) -> bool
+    {
+        for (auto nonchainablechr : nonchainablechrs)
+        {
+            if (nonchainablechr == chr)
+                return true;
+        }
+        return false;
+    };
+    auto determineidtype = [](char chr) -> IdentifierType
+    {
+        return (
+                   chr == '_' ||
+                   (chr >= 'A' && chr <= 'Z') ||
+                   (chr >= 'a' && chr <= 'z'))
+                   ? IdentifierType::Alpha
+                   : (
+                         ((chr == '.' || chr == '-' || (chr >= '0' && chr <= '9')
+                               ? IdentifierType::Numeric
+                               : IdentifierType::Symbolic)));
+    };
+
+    IdentifierType idtype = IdentifierType::Unknown; // The type of the current identifier
+    std::string nextid;                              // The next identifier to extract
+    size_t nextidend = 0;                            // The index of the next identifier's end in the line
+    bool isstr = false;                              // Whether the identifier is a string
+    bool iscomment = false;                          // Whether the identifier is a comment
+}
