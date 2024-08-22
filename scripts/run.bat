@@ -1,2 +1,2 @@
-cd ../build
+cd ./build
 .\zylo.exe
