@@ -308,7 +308,7 @@ std::string extract_identifier(std::string &line, char separator = ' ');
  * @param string The string to extract words from.
  * @return A vector of strings, each representing a word extracted from the input string.
  */
-std::vector<std::string> extract_words(const std::string &string);
+std::vector<std::string> &extract_words(const std::string &string);
 
 /**
  * @brief Determines the type of a token based on its identifier.

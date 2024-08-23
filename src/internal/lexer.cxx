@@ -18,6 +18,7 @@
  * declarations for the lexer components.
  */
 
+#include <vector>
 #include "lexer.hxx"
 #include "error.hxx"
 
@@ -223,4 +224,26 @@ std::string extract_identifier(std::string &line, char separator)
     }
     line = line.substr(nextidend);
     return nextid;
+}
+
+std::vector<std::string> &extract_words(const std::string &string)
+{
+    static std::vector<std::string> words;
+    words.clear(); // Clear the existing words because we are extracting new ones
+    using WordPair = std::pair<std::string, std::string>;
+    auto separate = [](const std::string &string, char separator) -> WordPair
+    {
+        const size_t separatoridx = string.find(separator);
+        return separatoridx == std::string::npos
+                   ? WordPair(string, "")
+                   : WordPair(string.substr(0, separatoridx), string.substr(separatoridx + 1));
+    };
+    const char separator = ' ';
+    WordPair wp = separate(string, separator);
+    while (wp.first != "")
+    {
+        words.push_back(wp.first);
+        wp = separate(wp.second, separator);
+    }
+    return words;
 }
