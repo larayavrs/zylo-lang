@@ -215,6 +215,10 @@ std::string extract_identifier(std::string &line, char separator)
                         (currentidtype == IdentifierType::Symbolic || chr == '-'))
                     break;
             }
+            nextid += chr;
         }
+        else if (nextid.size() > 0)
+            break;
+        nextidend++;
     }
 }
