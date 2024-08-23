@@ -193,6 +193,28 @@ std::string extract_identifier(std::string &line, char separator)
                     continue;
                 }
             }
+            IdentifierType currentidtype = determineidtype(chr);
+            if (idtype == IdentifierType::Unknown)
+                idtype = currentidtype;
+            else
+            {
+                if (idtype == IdentifierType::Numeric)
+                {
+                    if (nextid[0] == '-' && chr == '-')
+                    {
+                        nextidend++;
+                        nextid += chr;
+                        break;
+                    }
+                    else if (nextid.size() > 0 && (chr == '-' || currentidtype != IdentifierType::Numeric))
+                        break;
+                }
+                if (
+                    (idtype == IdentifierType::Symbolic && currentidtype != IdentifierType::Symbolic) ||
+                    (idtype != IdentifierType::Symbolic) &&
+                        (currentidtype == IdentifierType::Symbolic || chr == '-'))
+                    break;
+            }
         }
     }
 }
