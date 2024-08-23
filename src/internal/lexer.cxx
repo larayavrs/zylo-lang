@@ -221,4 +221,6 @@ std::string extract_identifier(std::string &line, char separator)
             break;
         nextidend++;
     }
+    line = line.substr(nextidend);
+    return nextid;
 }
