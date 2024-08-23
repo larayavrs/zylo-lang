@@ -247,3 +247,18 @@ std::vector<std::string> &extract_words(const std::string &string)
     }
     return words;
 }
+
+Token determine_token_type(const std::string &next_id)
+{
+    TokenType tktype = static_cast<TokenType>(0);
+    Token nexttk{TokenType::Invalid, next_id};
+    enum class TokenIdentifyMethod
+    {
+        Number,         // Number
+        ReservedKeyword // Reserved keyword
+    };
+    const int first_chr = next_id[0];
+    const int second_chr = next_id.size() > 1 ? next_id[1] : ' ';
+    if (first_chr == '\"')
+        return {TokenType::String, next_id};
+}
