@@ -145,4 +145,48 @@ std::string extract_identifier(std::string &line, char separator)
     size_t nextidend = 0;                            // The index of the next identifier's end in the line
     bool isstr = false;                              // Whether the identifier is a string
     bool iscomment = false;                          // Whether the identifier is a comment
+
+    for (auto chr : line) // Iterate over each character in the line
+    {
+        if (iscomment)
+        {
+            nextidend++;
+            if (chr == '\n')
+                break;
+            continue;
+        }
+        if (isunchainablechr(chr)) // Check if the character is unchainable
+        {
+            if (nextidend == 0)
+            {
+                nextidend++;
+                nextid += chr;
+            }
+            break;
+        }
+        if (isskpchr(chr) || isstr)
+        {
+            if (!iscomment)
+            {
+                if (chr == '\"')
+                {
+                    if (isstr)
+                    {
+                        nextidend++;
+                        break;
+                    }
+                    isstr = true;
+                }
+                else if (chr == '#')
+                {
+                    iscomment = true; // Assume the rest of the line is a comment
+                    if (nextid.size() > 0)
+                        break;
+                    else
+                        nextidend++;
+                    continue;
+                }
+            }
+        }
+    }
 }
