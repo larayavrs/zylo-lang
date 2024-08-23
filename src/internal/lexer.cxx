@@ -186,6 +186,12 @@ std::string extract_identifier(std::string &line, char separator)
                         nextidend++;
                     continue;
                 }
+                if (isstr)
+                {
+                    nextidend++;
+                    nextidend += chr;
+                    continue;
+                }
             }
         }
     }
